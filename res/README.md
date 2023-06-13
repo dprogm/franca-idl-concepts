@@ -1,0 +1,1 @@
+Contains all resources like diagrams.
