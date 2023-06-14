@@ -29,6 +29,14 @@ The language mappings for types can be found [here](docs/TypeMappings.md)
 | Broadcast | Subscribing and unsubscribing for broadcasts is done through the usage of a Unary RPC from client to server. Subscribing returns a unique identifier, the token, which can then be used to unsubscribe for messages. Because gRPC doesn't support broadcasts out of the box, a server-streaming RPC will be used for pushing messages from the server to the client. In order to be able to identify the server-streaming RPC the request must contain the token. If the client unsubscribes with the token the server-streaming RPC is done.
 | Attribute | For setting and getting the value a Unary RPC from client to server is used. Change events will be propagated like normal broadcasts. |
 
+# Proxy Architecture
+
+The following diagram uses the nomenclature that is usual for the respective framework. Unfortunately CommonAPI and gRPC are using the term `Stub` for the exact opposite communication part. The equivalent to a gRPC `Stub` is the CommonAPI `Proxy`.
+
+![Proxy Architecture](res/proxy_architecture.svg)
+
+[1] This can be for example SOME/IP, D-Bus or a custom IPC binding.
+
 # Roadmap
 
 - [ ] Define a mapping between Franca IDL and Protocol Buffers IDL
