@@ -2,7 +2,7 @@
 
 ## Pimitive Types (Scalar Types)
 
-| Franca IDL Type | Protocol Buffers Type | Protocol Buffers C++ Type | CommonAPI C++ Type |
+| Franca IDL Type | Protobuf Type | Protobuf C++ Type | CommonAPI C++ Type |
 | --- | --- | --- | --- |
 | `UInt8` | `uint32` | `uint32_t` | `uint8_t` |
 | `Int8` | `int32` | `int32_t` | `int8_t` |
@@ -23,7 +23,7 @@
 
 ## Complex Types
 
-| Franca IDL Type | Protocol Buffers Type | Protocol Buffers C++ Type | CommonAPI C++ Type |
+| Franca IDL Type | Protobuf Type | Protobuf C++ Type | CommonAPI C++ Type |
 | --- | --- | --- | --- |
 | `array` | `repeated` | `Repeated[Ptr]Field`<sup>[1]</sup> | `std::vector<T>` |
 | `enumeration` | `enum` | `enum`<sup>[2]</sup> | `CommonAPI::Enumeration` |

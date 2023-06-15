@@ -8,7 +8,7 @@ For now this repository contains a concept paper that describes the need for an 
 * Franca IDL - An IDL developed by COVESA.
 * CommonAPI - C++ IPC framework which uses a code generator that accepts Franca IDL as input and produces a user friendly C++ API.
 * gRPC - Stands for 'gRPC Remote Procedure Calls' and is an HTTP/2 based RPC framework.
-* Protocol Buffers - Language for serializing structured data, but which can also be used as an IDL by defining services. It is programming language and platform independent.
+* Protocol Buffers - Language for serializing structured data, but which can also be used as an IDL by defining services. It is programming language and platform independent. Throughout this paper the shorthand Protobuf will be used.
 
 # Motivation
 
@@ -17,11 +17,15 @@ One widespread IPC framework in the automotive industry is CommonAPI which provi
 * The API can be developed and tested with the help of tools like [Postman](https://www.postman.com/) that natively support gRPC APIs
 * Clients can be implemented in different languages and in an idiomatic way.
 
+# Language Transformation
+
+![Franca-to-Protobuf Transformation](res/franca_proto_transform.svg)
+
 # Language Mapping
 
-The following table shall give a concise overview of the mapping between Franca IDL interface elements and the protocol buffers service counterpart. An interface definition in Franca IDL refers to a service definition in protocol buffer. Because Franca IDL provides more features than gRPC it is not possible to have a one-to-one mapping for all of them. Therefore it is required to compose higher level concepts out of native gRPC functionality. Both IDLs don't claim any specific call semantics. This means it depends on the concrete IPC framework whether it supports a synchronous and/or an asynchronous programming model. However gRPC supports both.
+The following table shall give a concise overview of the mapping between Franca IDL interface elements and the Protobuf service counterpart. An interface definition in Franca IDL refers to a service definition in Protobuf. Because Franca IDL provides more features than gRPC it is not possible to have a one-to-one mapping for all of them. Therefore it is required to compose higher level concepts out of native gRPC functionality. Both IDLs don't claim any specific call semantics. This means it depends on the concrete IPC framework whether it supports a synchronous and/or an asynchronous programming model. However gRPC supports both.
 
-The language mappings for types can be found [here](docs/TypeMappings.md)
+The language mappings for types can be found [here](docs/TypeMappings.md). The notion of a `package` and an `import` statement are similar between both IDLs.
 
 | Franca Interface Element | Protobuf Service Element |
 | --- | --- |
@@ -35,9 +39,11 @@ The following diagram uses the nomenclature that is usual for the respective fra
 
 ![Proxy Architecture](res/proxy_architecture.svg)
 
-[1] This can be for example SOME/IP, D-Bus or a custom IPC binding.
+[1] This can be for example SOME/IP, D-Bus or a custom IPC binding. \
+[2] The target platform refers to the operating system on which the pure CommonAPI clients/servers are running. The target platform is usually an embedded system. The middleware might only be able to communicate within this target platform boundaries. In this case the proxy must run on the target platform too. The pure gRPC clients/servers are usually running on the host platform, but might also run on the target platform too.
 
 # Roadmap
 
-- [ ] Define a mapping between Franca IDL and Protocol Buffers IDL
-- [ ] Take CommonAPI types into account and compare it with the generated C++ Protocol Buffers code
+- [ ] Define a mapping between Franca IDL and Protobuf IDL
+- [ ] Take CommonAPI types into account and compare it with the generated C++ Protobuf code
+- [ ] Create a concept of how to disambiguate type names in order to make sure there are no name conflicts. Franca IDL has a lot of different scoping techniques like `typeCollection` where no equivalent exists in Protobuf
