@@ -19,7 +19,14 @@ One widespread IPC framework in the automotive industry is CommonAPI which provi
 
 # Language Transformation
 
+* `FIR` is the Franca Intermediate Representation.
+* `PIR` is the Protobuf Intermediate Representation.
+* `IRM` is the Intermediate Representation Mapping.
+
 ![Franca-to-Protobuf Transformation](res/franca_proto_transform.svg)
+
+[1] This generator refers to the CommonAPI core generator that generates the middleware independent C++ API. \
+[2] This generator refers to the Protobuf compiler.
 
 # Language Mapping
 
